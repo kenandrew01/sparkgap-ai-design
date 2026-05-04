@@ -1,10 +1,16 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, Play, X } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import heroPcb from "@/assets/hero-pcb.jpg";
+import demoVideoAsset from "@/assets/demo-video.mp4.asset.json";
 
 const HeroSection = () => {
+  const [demoOpen, setDemoOpen] = useState(false);
+
   return (
+    <>
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
       {/* Background image */}
       <div className="absolute inset-0">
@@ -42,7 +48,13 @@ const HeroSection = () => {
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
-          <Button size="lg" variant="outline" className="border-border hover:border-glow-soft hover:bg-secondary/50 px-8 text-base">
+          <Button
+            size="lg"
+            variant="outline"
+            className="border-border hover:border-glow-soft hover:bg-secondary/50 px-8 text-base"
+            onClick={() => setDemoOpen(true)}
+          >
+            <Play className="mr-2 h-4 w-4" />
             Watch Demo
           </Button>
         </div>
@@ -50,6 +62,22 @@ const HeroSection = () => {
         <p className="mt-6 text-xs text-muted-foreground">No credit card required · Free tier available</p>
       </div>
     </section>
+
+    <Dialog open={demoOpen} onOpenChange={setDemoOpen}>
+      <DialogContent className="max-w-4xl p-0 bg-background border-border overflow-hidden">
+        <DialogTitle className="sr-only">Sparkgap.AI Demo Video</DialogTitle>
+        <div className="relative aspect-video">
+          <video
+            src={demoVideoAsset.url}
+            className="h-full w-full"
+            controls
+            autoPlay
+            playsInline
+          />
+        </div>
+      </DialogContent>
+    </Dialog>
+    </>
   );
 };
 
