@@ -27,6 +27,7 @@ const PROCESS_STEPS: ProcessStep[] = [
 const DesignFlow = () => {
   const [stage, setStage] = useState<Stage>("upload");
   const [file, setFile] = useState<File | null>(null);
+  const [uploading, setUploading] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [stepProgress, setStepProgress] = useState(0);
   const [previewOpacity, setPreviewOpacity] = useState(0);
@@ -46,7 +47,7 @@ const DesignFlow = () => {
 
   const startProcessing = async () => {
     if (!file) return;
-    setStage("uploading");
+    setUploading(true);
 
     // Upload to cloud storage
     const filePath = `${Date.now()}-${file.name}`;
@@ -60,11 +61,12 @@ const DesignFlow = () => {
         description: error.message,
         variant: "destructive",
       });
-      setStage("upload");
+      setUploading(false);
       return;
     }
 
     toast({ title: "File uploaded", description: "Starting AI design process…" });
+    setUploading(false);
     setStage("processing");
     setCurrentStep(0);
     setStepProgress(0);
@@ -175,16 +177,16 @@ const DesignFlow = () => {
             <div className="flex justify-center">
               <Button
                 size="lg"
-                disabled={!file || stage === "uploading"}
+                disabled={!file || uploading}
                 onClick={startProcessing}
                 className="bg-primary text-primary-foreground hover:bg-primary/90 box-glow px-10"
               >
-                {stage === "uploading" ? (
+                {uploading ? (
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 ) : (
                   <Zap className="mr-2 h-4 w-4" />
                 )}
-                {stage === "uploading" ? "Uploading…" : "Start AI Design"}
+                {uploading ? "Uploading…" : "Start AI Design"}
               </Button>
             </div>
           </div>
