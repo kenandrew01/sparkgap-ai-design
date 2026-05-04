@@ -8,7 +8,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import pcbPreview from "@/assets/pcb-preview.jpg";
 
-type Stage = "upload" | "uploading" | "processing" | "complete";
+type Stage = "upload" | "processing" | "complete";
 
 interface ProcessStep {
   label: string;
