@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 import heroPcb from "@/assets/hero-pcb.jpg";
 
 const HeroSection = () => {
@@ -35,9 +36,11 @@ const HeroSection = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 box-glow px-8 text-base">
-            Start Designing Free
-            <ArrowRight className="ml-2 h-4 w-4" />
+          <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 box-glow px-8 text-base" asChild>
+            <Link to="/design">
+              Start Designing Free
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
           </Button>
           <Button size="lg" variant="outline" className="border-border hover:border-glow-soft hover:bg-secondary/50 px-8 text-base">
             Watch Demo
