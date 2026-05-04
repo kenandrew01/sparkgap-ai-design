@@ -2,8 +2,10 @@ import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Upload, FileText, Cpu, CheckCircle, ArrowLeft, Zap, Layers, AlertTriangle, RotateCcw } from "lucide-react";
+import { Upload, FileText, Cpu, CheckCircle, ArrowLeft, Zap, Layers, AlertTriangle, RotateCcw, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 import pcbPreview from "@/assets/pcb-preview.jpg";
 
 type Stage = "upload" | "processing" | "complete";
@@ -25,10 +27,12 @@ const PROCESS_STEPS: ProcessStep[] = [
 const DesignFlow = () => {
   const [stage, setStage] = useState<Stage>("upload");
   const [file, setFile] = useState<File | null>(null);
+  const [uploading, setUploading] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [stepProgress, setStepProgress] = useState(0);
   const [previewOpacity, setPreviewOpacity] = useState(0);
   const [dragOver, setDragOver] = useState(false);
+  const { toast } = useToast();
 
   const handleFile = useCallback((f: File) => {
     setFile(f);
@@ -41,7 +45,28 @@ const DesignFlow = () => {
     if (f) handleFile(f);
   }, [handleFile]);
 
-  const startProcessing = () => {
+  const startProcessing = async () => {
+    if (!file) return;
+    setUploading(true);
+
+    // Upload to cloud storage
+    const filePath = `${Date.now()}-${file.name}`;
+    const { error } = await supabase.storage
+      .from("pcb-uploads")
+      .upload(filePath, file);
+
+    if (error) {
+      toast({
+        title: "Upload failed",
+        description: error.message,
+        variant: "destructive",
+      });
+      setUploading(false);
+      return;
+    }
+
+    toast({ title: "File uploaded", description: "Starting AI design process…" });
+    setUploading(false);
     setStage("processing");
     setCurrentStep(0);
     setStepProgress(0);
@@ -152,12 +177,16 @@ const DesignFlow = () => {
             <div className="flex justify-center">
               <Button
                 size="lg"
-                disabled={!file}
+                disabled={!file || uploading}
                 onClick={startProcessing}
                 className="bg-primary text-primary-foreground hover:bg-primary/90 box-glow px-10"
               >
-                <Zap className="mr-2 h-4 w-4" />
-                Start AI Design
+                {uploading ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <Zap className="mr-2 h-4 w-4" />
+                )}
+                {uploading ? "Uploading…" : "Start AI Design"}
               </Button>
             </div>
           </div>
