@@ -9,6 +9,7 @@ import SolutionsSection from "@/components/SolutionsSection";
 import BottomCTASection from "@/components/BottomCTASection";
 import CTASection from "@/components/CTASection";
 import ContactSection from "@/components/ContactSection";
+import DonateFloating from "@/components/DonateFloating";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -26,6 +27,7 @@ const Index = () => {
       <CTASection />
       <ContactSection />
       <Footer />
+      <DonateFloating />
     </div>
   );
 };
