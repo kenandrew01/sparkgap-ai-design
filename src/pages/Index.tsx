@@ -27,6 +27,7 @@ const Index = () => {
       <CTASection />
       <ContactSection />
       <Footer />
+      <DonateFloating />
     </div>
   );
 };
