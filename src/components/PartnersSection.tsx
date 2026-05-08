@@ -1,9 +1,15 @@
+import nvidiaLogo from "@/assets/logo-nvidia.png";
+import intelLogo from "@/assets/logo-intel.png";
+import siemensLogo from "@/assets/logo-siemens.png";
+import awsLogo from "@/assets/logo-aws.png";
+import armLogo from "@/assets/logo-arm.png";
+
 const partners = [
-  { name: "NVIDIA", logo: "NVIDIA" },
-  { name: "Intel", logo: "Intel" },
-  { name: "Siemens", logo: "Siemens" },
-  { name: "AWS", logo: "AWS" },
-  { name: "ARM", logo: "ARM" },
+  { name: "NVIDIA", logo: nvidiaLogo },
+  { name: "Intel", logo: intelLogo },
+  { name: "Siemens", logo: siemensLogo },
+  { name: "AWS", logo: awsLogo },
+  { name: "ARM", logo: armLogo },
 ];
 
 const PartnersSection = () => {
@@ -18,9 +24,14 @@ const PartnersSection = () => {
             {partners.map((p) => (
               <div
                 key={p.name}
-                className="flex items-center justify-center rounded-lg border border-border bg-secondary/30 px-6 py-3 text-muted-foreground font-bold text-lg tracking-wide opacity-60 hover:opacity-100 transition-opacity"
+                className="flex items-center justify-center rounded-lg border border-border bg-secondary/30 px-6 py-3 opacity-60 hover:opacity-100 transition-opacity"
               >
-                {p.logo}
+                <img
+                  src={p.logo}
+                  alt={`${p.name} logo`}
+                  loading="lazy"
+                  className="h-8 w-auto object-contain"
+                />
               </div>
             ))}
           </div>
