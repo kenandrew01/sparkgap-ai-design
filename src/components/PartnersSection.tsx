@@ -5,36 +5,49 @@ import awsLogo from "@/assets/logo-aws.png";
 import armLogo from "@/assets/logo-arm.png";
 
 const partners = [
-  { name: "NVIDIA", logo: nvidiaLogo },
-  { name: "Intel", logo: intelLogo },
-  { name: "Siemens", logo: siemensLogo },
-  { name: "AWS", logo: awsLogo },
-  { name: "ARM", logo: armLogo },
+  { name: "NVIDIA", logo: nvidiaLogo, url: "https://www.nvidia.com" },
+  { name: "Intel", logo: intelLogo, url: "https://www.intel.com" },
+  { name: "Siemens", logo: siemensLogo, url: "https://www.siemens.com" },
+  { name: "AWS", logo: awsLogo, url: "https://aws.amazon.com" },
+  { name: "ARM", logo: armLogo, url: "https://www.arm.com" },
 ];
 
 const PartnersSection = () => {
+  const loop = [...partners, ...partners];
   return (
-    <section className="py-12 border-b border-border/50">
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8">
-          <span className="text-sm font-semibold text-muted-foreground tracking-wider uppercase whitespace-nowrap">
-            Trusted Industry Partners
-          </span>
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
-            {partners.map((p) => (
-              <div
-                key={p.name}
-                className="flex items-center justify-center rounded-lg border border-border bg-secondary/30 px-6 py-3 opacity-60 hover:opacity-100 transition-opacity"
-              >
-                <img
-                  src={p.logo}
-                  alt={`${p.name} logo`}
-                  loading="lazy"
-                  className="h-8 w-auto object-contain"
-                />
-              </div>
-            ))}
-          </div>
+    <section className="py-16 border-b border-border/50">
+      <div className="container mx-auto px-6 mb-8">
+        <p className="text-center text-sm font-semibold text-muted-foreground tracking-wider uppercase">
+          Trusted Industry Partners
+        </p>
+      </div>
+      <div
+        className="group relative overflow-hidden"
+        style={{
+          maskImage:
+            "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+        }}
+      >
+        <div className="flex w-max animate-marquee gap-12 md:gap-20 group-hover:[animation-play-state:paused]">
+          {loop.map((p, i) => (
+            <a
+              key={`${p.name}-${i}`}
+              href={p.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={p.name}
+              className="flex shrink-0 items-center justify-center rounded-xl border border-border bg-secondary/30 px-10 py-6 opacity-70 hover:opacity-100 hover:border-primary/50 transition-all"
+            >
+              <img
+                src={p.logo}
+                alt={`${p.name} logo`}
+                loading="lazy"
+                className="h-16 md:h-20 w-auto object-contain"
+              />
+            </a>
+          ))}
         </div>
       </div>
     </section>
