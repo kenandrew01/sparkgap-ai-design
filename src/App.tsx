@@ -7,6 +7,7 @@ import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import DesignFlow from "./pages/DesignFlow.tsx";
 import PcbFootprintAI from "./pages/PcbFootprintAI.tsx";
+import LeadTimeEstimator from "./pages/LeadTimeEstimator.tsx";
 
 const queryClient = new QueryClient();
 
