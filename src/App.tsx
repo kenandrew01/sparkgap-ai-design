@@ -21,6 +21,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/design" element={<DesignFlow />} />
           <Route path="/footprint-ai" element={<PcbFootprintAI />} />
+          <Route path="/lead-time" element={<LeadTimeEstimator />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
