@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound.tsx";
 import DesignFlow from "./pages/DesignFlow.tsx";
 import PcbFootprintAI from "./pages/PcbFootprintAI.tsx";
 import LeadTimeEstimator from "./pages/LeadTimeEstimator.tsx";
+import AltiumMcp from "./pages/AltiumMcp.tsx";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/design" element={<DesignFlow />} />
           <Route path="/footprint-ai" element={<PcbFootprintAI />} />
           <Route path="/lead-time" element={<LeadTimeEstimator />} />
+          <Route path="/altium-mcp" element={<AltiumMcp />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
