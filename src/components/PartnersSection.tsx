@@ -38,13 +38,13 @@ const PartnersSection = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={p.name}
-              className="flex shrink-0 items-center justify-center rounded-xl border border-border bg-secondary/30 px-10 py-6 opacity-70 hover:opacity-100 hover:border-primary/50 transition-all"
+              className="flex shrink-0 items-center justify-center rounded-xl border border-border bg-secondary/30 px-12 py-8 opacity-70 hover:opacity-100 hover:border-primary/50 transition-all"
             >
               <img
                 src={p.logo}
                 alt={`${p.name} logo`}
                 loading="lazy"
-                className="h-16 md:h-20 w-auto object-contain"
+                className="h-28 md:h-36 w-auto object-contain"
               />
             </a>
           ))}
