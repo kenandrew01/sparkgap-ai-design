@@ -14,7 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      review_jobs: {
+        Row: {
+          created_at: string
+          error: string | null
+          file_path: string
+          id: string
+          ip_hash: string | null
+          original_name: string
+          report: Json | null
+          status: string
+          token: string
+        }
+        Insert: {
+          created_at?: string
+          error?: string | null
+          file_path: string
+          id?: string
+          ip_hash?: string | null
+          original_name: string
+          report?: Json | null
+          status?: string
+          token: string
+        }
+        Update: {
+          created_at?: string
+          error?: string | null
+          file_path?: string
+          id?: string
+          ip_hash?: string | null
+          original_name?: string
+          report?: Json | null
+          status?: string
+          token?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
