@@ -19,6 +19,7 @@ const Navbar = () => {
           <Link to="/footprint-ai" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Footprint AI</Link>
           <Link to="/lead-time" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Lead Time Estimator</Link>
           <Link to="/altium-mcp" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Altium MCP</Link>
+          <Link to="/schematic-review" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Schematic Review</Link>
           <a href="#contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Contact</a>
         </div>
         <div className="flex items-center gap-3">
