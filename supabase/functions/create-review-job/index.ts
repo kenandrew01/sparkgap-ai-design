@@ -77,6 +77,18 @@ Deno.serve(async (req) => {
       throw insErr;
     }
 
+    // Kick off the AI review in the background
+    const kick = fetch(`${Deno.env.get("SUPABASE_URL")}/functions/v1/process-review-job`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")}`,
+      },
+      body: JSON.stringify({ token }),
+    }).catch((e) => console.error("kick process-review-job failed", e));
+    // @ts-ignore EdgeRuntime is provided by the Supabase runtime
+    EdgeRuntime.waitUntil(kick);
+
     return json({ token });
   } catch (err) {
     console.error("create-review-job error", err);
