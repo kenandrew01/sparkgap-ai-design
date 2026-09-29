@@ -1,12 +1,34 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Upload, FileText, Loader2, ShieldCheck } from "lucide-react";
+import {
+  Upload, FileText, Loader2, ShieldCheck, FileArchive, FileBox,
+  FileSpreadsheet, ScanLine, FileWarning, Clock, BrainCircuit, ClipboardCheck,
+} from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 
 const MAX_BYTES = 20 * 1024 * 1024;
 const ALLOWED = [".schdoc", ".prjpcb", ".zip"];
+
+const SUPPORTED = [
+  { icon: FileBox, ext: ".SchDoc", label: "Altium Schematic", note: "Best results" },
+  { icon: FileText, ext: ".PrjPcb", label: "Altium Project", note: "Best results" },
+  { icon: FileArchive, ext: ".zip", label: "Archive with netlists, BOMs or text exports", note: ".net / .csv / .bom / .txt" },
+];
+
+const COMING_SOON = [
+  { icon: ScanLine, ext: "Gerber", label: "Gerber & drill files" },
+  { icon: FileText, ext: "PDF", label: "PDF schematics" },
+  { icon: FileBox, ext: "KiCad", label: "KiCad projects" },
+  { icon: FileSpreadsheet, ext: "XLSX", label: "Spreadsheets" },
+];
+
+const STEPS = [
+  { icon: Upload, title: "1. Upload", text: "Drop your Altium schematic or project file." },
+  { icon: BrainCircuit, title: "2. AI Review", text: "The AI reads your design and hunts for issues." },
+  { icon: ClipboardCheck, title: "3. Report", text: "Get a verdict and issue list, sorted by severity." },
+];
 
 const SchematicReview = () => {
   const navigate = useNavigate();
@@ -66,6 +88,24 @@ const SchematicReview = () => {
           Upload your Altium schematic or project and get an AI review of potential issues.
         </p>
 
+        {/* How it works */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-10">
+          {STEPS.map((s) => (
+            <div
+              key={s.title}
+              className="rounded-lg border border-border bg-card p-4 flex items-start gap-3"
+            >
+              <div className="rounded-md bg-primary/10 p-2 shrink-0">
+                <s.icon className="h-5 w-5 text-primary" />
+              </div>
+              <div>
+                <p className="font-medium text-sm">{s.title}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{s.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
         <div
           onClick={() => inputRef.current?.click()}
           onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
@@ -112,6 +152,63 @@ const SchematicReview = () => {
           <ShieldCheck className="h-5 w-5 text-primary shrink-0" />
           <p>Your design is used only for this review and deleted after 30 days. Keep your result link private.</p>
         </div>
+
+        {/* Supported formats */}
+        <section className="mt-14">
+          <h2 className="text-xl font-semibold mb-1">What the AI can read</h2>
+          <p className="text-sm text-muted-foreground mb-5">
+            The reviewer extracts real design data from these formats and flags engineering issues.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {SUPPORTED.map((f) => (
+              <div
+                key={f.ext}
+                className="rounded-xl border border-border bg-card p-5 flex flex-col items-center text-center gap-2"
+              >
+                <div className="rounded-lg bg-primary/10 p-3">
+                  <f.icon className="h-7 w-7 text-primary" />
+                </div>
+                <span className="rounded bg-primary/15 text-primary text-xs font-mono font-semibold px-2 py-0.5">
+                  {f.ext}
+                </span>
+                <p className="font-medium text-sm leading-snug">{f.label}</p>
+                <span className="inline-flex items-center gap-1 text-xs text-emerald-500">
+                  <ShieldCheck className="h-3.5 w-3.5" /> Supported — {f.note}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-6">
+            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-3 flex items-center gap-2">
+              <Clock className="h-3.5 w-3.5" /> Coming soon
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {COMING_SOON.map((f) => (
+                <div
+                  key={f.ext}
+                  className="rounded-lg border border-dashed border-border bg-muted/30 p-4 flex flex-col items-center text-center gap-2 opacity-70"
+                >
+                  <f.icon className="h-5 w-5 text-muted-foreground" />
+                  <span className="rounded bg-muted text-muted-foreground text-xs font-mono px-2 py-0.5">
+                    {f.ext}
+                  </span>
+                  <p className="text-xs text-muted-foreground leading-snug">{f.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-6 flex items-start gap-3 rounded-lg border border-border bg-muted/40 p-4 text-sm text-muted-foreground">
+            <FileWarning className="h-5 w-5 text-primary shrink-0" />
+            <p>
+              Supported extensions don't guarantee readable design content — binary-only files like Gerbers or
+              flattened PDFs contain no readable design data. If little usable data is found, the review will
+              tell you instead of guessing.
+            </p>
+          </div>
+        </section>
       </main>
     </div>
   );
