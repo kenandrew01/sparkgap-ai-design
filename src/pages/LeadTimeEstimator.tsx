@@ -81,12 +81,12 @@ const LeadTimeEstimator = () => {
             <ArrowLeft className="h-4 w-4" />
             <span className="text-sm">Back</span>
           </Link>
-          <div className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <Zap className="h-5 w-5 text-primary" />
             <span className="font-semibold">
               Spark<span className="gradient-text">gap</span>.AI — Lead Time Estimator
             </span>
-          </div>
+          </Link>
         </div>
       </div>
 
