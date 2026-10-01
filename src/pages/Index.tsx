@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import PartnersSection from "@/components/PartnersSection";
+import SchematicReviewSection from "@/components/SchematicReviewSection";
 import FeaturesSection from "@/components/FeaturesSection";
 import WorkflowSection from "@/components/WorkflowSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
