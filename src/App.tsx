@@ -11,6 +11,7 @@ import LeadTimeEstimator from "./pages/LeadTimeEstimator.tsx";
 import AltiumMcp from "./pages/AltiumMcp.tsx";
 import SchematicReview from "./pages/SchematicReview.tsx";
 import SchematicReviewResult from "./pages/SchematicReviewResult.tsx";
+import PcbReverseEngineer from "./pages/PcbReverseEngineer.tsx";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/altium-mcp" element={<AltiumMcp />} />
           <Route path="/schematic-review" element={<SchematicReview />} />
           <Route path="/schematic-review/:token" element={<SchematicReviewResult />} />
+          <Route path="/reverse-engineer" element={<PcbReverseEngineer />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
