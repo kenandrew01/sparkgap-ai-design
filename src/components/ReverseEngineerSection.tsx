@@ -16,7 +16,7 @@ const ReverseEngineerSection = () => (
         <span className="text-xs font-medium text-muted-foreground">New — PCB Reverse Engineering</span>
       </div>
       <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-5">
-        Turn a <span className="gradient-text text-glow">PCB Photo</span> into an Altium Design
+        Reverse engineer a <span className="gradient-text text-glow">PCB to Altium</span>
       </h2>
       <p className="text-muted-foreground text-lg mb-10 max-w-2xl mx-auto">
         Lost the design files? Upload a picture of the board and our AI rebuilds the parts list, connections and a rough layout.
