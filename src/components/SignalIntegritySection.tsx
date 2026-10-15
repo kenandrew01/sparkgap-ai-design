@@ -32,8 +32,7 @@ const SignalIntegritySection = () => (
           <span className="text-xs font-medium text-muted-foreground">High potential</span>
         </div>
         <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-5">
-          <span className="text-muted-foreground">2.</span> AI for{" "}
-          <span className="gradient-text text-glow">RF and high-speed signal integrity</span>
+          AI for <span className="gradient-text text-glow">RF and high-speed signal integrity</span>
         </h2>
         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
           The rules that make RF and high-speed boards work are precise and easy to check — which makes them
