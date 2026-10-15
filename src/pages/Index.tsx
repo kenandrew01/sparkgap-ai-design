@@ -19,7 +19,6 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       <HeroSection />
-      <PartnersSection />
       <SchematicReviewSection />
       <ReverseEngineerSection />
       <FeaturesSection />
@@ -30,6 +29,7 @@ const Index = () => {
       <BottomCTASection />
       <CTASection />
       <ContactSection />
+      <PartnersSection />
       <Footer />
       <DonateFloating />
     </div>
