@@ -45,23 +45,23 @@ const DonateFloating = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 w-[20rem] max-w-[calc(100vw-3rem)]">
-      <div className="rounded-2xl border border-border bg-card/95 backdrop-blur-xl p-5 shadow-2xl box-glow">
-        <div className="flex items-start gap-3">
-          <div className="mt-0.5 inline-flex rounded-lg bg-secondary p-2 w-fit shrink-0">
-            <Heart className="h-4 w-4 text-primary" />
+    <div className="fixed bottom-4 left-4 z-40 w-[15rem] max-w-[calc(100vw-2rem)]">
+      <div className="rounded-xl border border-border bg-card/95 backdrop-blur-xl p-3 shadow-2xl box-glow">
+        <div className="flex items-start gap-2">
+          <div className="mt-0.5 inline-flex rounded-md bg-secondary p-1.5 w-fit shrink-0">
+            <Heart className="h-3 w-3 text-primary" />
           </div>
           <div>
-            <p className="text-sm font-medium text-foreground leading-snug">
+            <p className="text-xs font-medium text-foreground leading-snug">
               Support our mission
             </p>
-            <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
-              Donate to fund development. Pay with Apple Pay, Google Pay, card, or Link.
+            <p className="text-[11px] text-muted-foreground mt-0.5 leading-snug">
+              Donate to fund development. Apple Pay, Google Pay, card or Link.
             </p>
           </div>
         </div>
 
-        <div className="mt-4 grid grid-cols-3 gap-2">
+        <div className="mt-2.5 grid grid-cols-3 gap-1.5">
           {PRESETS.map((p) => (
             <button
               key={p}
@@ -70,7 +70,7 @@ const DonateFloating = () => {
                 setAmount(p);
                 setCustom("");
               }}
-              className={`rounded-md border px-2 py-1.5 text-sm transition-colors ${
+              className={`rounded-md border px-1 py-1 text-xs transition-colors ${
                 !custom && amount === p
                   ? "border-primary bg-primary/10 text-foreground"
                   : "border-border bg-secondary/50 text-muted-foreground hover:text-foreground"
@@ -81,16 +81,16 @@ const DonateFloating = () => {
           ))}
         </div>
 
-        <div className="mt-2 flex items-center gap-2 rounded-md border border-border bg-secondary/50 px-2 focus-within:border-primary">
-          <span className="text-sm text-muted-foreground">$</span>
+        <div className="mt-1.5 flex items-center gap-1 rounded-md border border-border bg-secondary/50 px-1.5 focus-within:border-primary">
+          <span className="text-xs text-muted-foreground">$</span>
           <input
             type="number"
             min={1}
             step={1}
-            placeholder="Custom amount"
+            placeholder="Custom"
             value={custom}
             onChange={(e) => setCustom(e.target.value)}
-            className="w-full bg-transparent py-1.5 text-sm outline-none placeholder:text-muted-foreground"
+            className="w-full bg-transparent py-1 text-xs outline-none placeholder:text-muted-foreground"
           />
         </div>
 
@@ -98,12 +98,12 @@ const DonateFloating = () => {
           size="sm"
           onClick={handleDonate}
           disabled={loading}
-          className="w-full mt-4 bg-primary text-primary-foreground hover:bg-primary/90 box-glow"
+          className="w-full h-7 mt-2 px-2 text-xs bg-primary text-primary-foreground hover:bg-primary/90 box-glow"
         >
           {loading ? (
-            <Loader2 className="h-3.5 w-3.5 mr-2 animate-spin" />
+            <Loader2 className="h-3 w-3 mr-1 animate-spin" />
           ) : (
-            <Heart className="h-3.5 w-3.5 mr-2" />
+            <Heart className="h-3 w-3 mr-1" />
           )}
           Donate ${custom || amount}
         </Button>
