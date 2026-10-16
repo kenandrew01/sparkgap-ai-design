@@ -1,4 +1,6 @@
-import { Activity, GitCompare, Layers, AlertTriangle, TrendingUp } from "lucide-react";
+import { Activity, GitCompare, Layers, AlertTriangle, TrendingUp, Upload } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const items = [
   {
@@ -65,6 +67,12 @@ const SignalIntegritySection = () => (
             results.
           </p>
         </div>
+      </div>
+
+      <div className="flex justify-center mt-8">
+        <Button asChild size="lg" className="gap-2">
+          <Link to="/signal-integrity"><Upload className="h-4 w-4" /> Analyse My Design</Link>
+        </Button>
       </div>
     </div>
   </section>
