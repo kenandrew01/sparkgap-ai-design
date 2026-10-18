@@ -32,7 +32,7 @@ const EXAMPLES = [
 const csv = (v: string | number) => `"${String(v).replace(/"/g, '""')}"`;
 
 function padsCsv(f: Footprint): string {
-  const rows = [["Pad", "X(mm)", "Y(mm)", "Width(mm)", "Height(mm)", "Shape", "Layer"]];
+  const rows: (string | number)[][] = [["Pad", "X(mm)", "Y(mm)", "Width(mm)", "Height(mm)", "Shape", "Layer"]];
   f.pads.forEach((p) => rows.push([p.name, p.x_mm, p.y_mm, p.width_mm, p.height_mm, p.shape, p.layer]));
   return rows.map((r) => r.map(csv).join(",")).join("\n") + "\n";
 }
