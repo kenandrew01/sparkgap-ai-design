@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Download, Loader2, Ruler, Sparkles, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
 type Pad = {
