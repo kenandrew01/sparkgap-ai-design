@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Download, Loader2, Ruler, Sparkles, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
 type Pad = {
@@ -101,9 +100,21 @@ const PcbFootprintAI = () => {
     setLoading(true);
     setResult(null);
     try {
-      const { data, error } = await supabase.functions.invoke("generate-footprint", { body: { description: desc } });
-      if (error) throw new Error(data?.error ?? error.message);
-      if (data?.error) throw new Error(data.error);
+      const res = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/generate-footprint`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+        },
+        body: JSON.stringify({ description: desc }),
+      });
+      const data = await res.json().catch(() => null);
+      if (!res.ok || !data || data.error) {
+        setLoading(false);
+        toast({ title: "Generation failed", description: data?.error ?? "Please try again.", variant: "destructive" });
+        return;
+      }
       setResult(data as Footprint);
     } catch (e) {
       toast({ title: "Generation failed", description: e instanceof Error ? e.message : "Please try again.", variant: "destructive" });
