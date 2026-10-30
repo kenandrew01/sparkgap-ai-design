@@ -14,6 +14,33 @@ export type Database = {
   }
   public: {
     Tables: {
+      altium_jobs: {
+        Row: {
+          created_at: string
+          id: string
+          payload: Json
+          picked_up_at: string | null
+          result_url: string | null
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          payload: Json
+          picked_up_at?: string | null
+          result_url?: string | null
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          payload?: Json
+          picked_up_at?: string | null
+          result_url?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
       review_jobs: {
         Row: {
           created_at: string
