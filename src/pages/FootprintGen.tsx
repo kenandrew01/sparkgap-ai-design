@@ -241,7 +241,7 @@ const FootprintGen = () => {
 
   const sendToAltium = async () => {
     const { error } = await supabase.from("altium_jobs").insert({
-      payload: { extracted, footprint },
+      payload: JSON.parse(JSON.stringify({ extracted, footprint })),
       status: "pending",
     });
     if (error) {
