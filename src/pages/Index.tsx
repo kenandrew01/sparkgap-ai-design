@@ -12,6 +12,7 @@ import TestimonialSection from "@/components/TestimonialSection";
 import SolutionsSection from "@/components/SolutionsSection";
 import BottomCTASection from "@/components/BottomCTASection";
 import CTASection from "@/components/CTASection";
+import ServicesSection from "@/components/ServicesSection";
 import ContactSection from "@/components/ContactSection";
 import DonateFloating from "@/components/DonateFloating";
 import Footer from "@/components/Footer";
@@ -32,6 +33,7 @@ const Index = () => {
       <SolutionsSection />
       <BottomCTASection />
       <CTASection />
+      <ServicesSection />
       <ContactSection />
       <PartnersSection />
       <Footer />
