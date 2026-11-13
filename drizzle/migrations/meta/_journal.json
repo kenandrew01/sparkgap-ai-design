@@ -15,6 +15,13 @@
       "when": 1794602395956,
       "tag": "0001_remove_public_read_policy_on_pcb_uploads",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794602455743,
+      "tag": "0002_tighten_anon_insert_policies",
+      "breakpoints": true
     }
   ]
 }
