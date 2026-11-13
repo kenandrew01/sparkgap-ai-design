@@ -8,3 +8,5 @@
 ## Done
 
 - Stripe key question answered: value cannot be shown; user re-enters via secure form or Stripe dashboard.
+
+- [ ] Custom domain / TXT record question: user was told to add a TXT record for sparkgap-ai-design.lovable.app — clarify that Lovable hosts that domain; needs a custom domain to add DNS records.
