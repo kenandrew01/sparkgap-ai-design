@@ -1,0 +1,1 @@
+DROP POLICY IF EXISTS "Allow public reads" ON storage.objects;

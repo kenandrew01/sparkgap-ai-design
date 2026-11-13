@@ -8,6 +8,13 @@
       "when": 1793349930359,
       "tag": "0000_create_altium_jobs",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1794602395956,
+      "tag": "0001_remove_public_read_policy_on_pcb_uploads",
+      "breakpoints": true
     }
   ]
 }
